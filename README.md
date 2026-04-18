@@ -77,120 +77,16 @@ The server should start on `http://localhost:5000`.
 
 ---
 
-## 📚 Postman-Ready API Examples
+## 📚 API Documentation (Swagger)
 
-### 1. Authentication
+The project includes comprehensive OpenAPI (Swagger) documentation. 
 
-**Register a User**
-```http
-POST /api/auth/register
-Content-Type: application/json
-
-{
-  "name": "John Doe",
-  "email": "john@example.com",
-  "password": "password123",
-  "role": "user" // Or "admin" for testing admin routes
-}
+Once the server is running, you can access the interactive Swagger UI at:
+```
+http://localhost:5001/api-docs
 ```
 
-**Login**
-```http
-POST /api/auth/login
-Content-Type: application/json
-
-{
-  "email": "john@example.com",
-  "password": "password123"
-}
-```
-*Response will contain a `token`. Use this token as a Bearer Token in the Authorization header for protected routes.*
-
-### 2. Books
-
-**Get All Books (Public)**
-```http
-GET /api/books?page=1&limit=10&category=Fiction
-```
-
-**Search Books**
-```http
-GET /api/books?search=harry
-```
-
-**Add a Book (Admin Only)**
-```http
-POST /api/books
-Authorization: Bearer <your_admin_token>
-Content-Type: application/json
-
-{
-  "title": "The Great Gatsby",
-  "author": "F. Scott Fitzgerald",
-  "category": "Fiction",
-  "price": 19.99,
-  "stock": 50,
-  "description": "A classic novel.",
-  "publishedYear": 1925
-}
-```
-
-### 3. Cart
-
-**Add to Cart (Protected)**
-```http
-POST /api/cart/add
-Authorization: Bearer <your_token>
-Content-Type: application/json
-
-{
-  "bookId": "64d0f5c8e2b8c9a0...", // Replace with a real Book _id
-  "quantity": 2
-}
-```
-
-**Get My Cart (Protected)**
-```http
-GET /api/cart
-Authorization: Bearer <your_token>
-```
-
-### 4. Orders
-
-**Create Order (Protected)**
-```http
-POST /api/orders
-Authorization: Bearer <your_token>
-Content-Type: application/json
-
-{
-  "shippingAddress": {
-    "street": "123 Main St",
-    "city": "Metropolis",
-    "state": "NY",
-    "zipCode": "10001",
-    "country": "USA"
-  }
-}
-```
-
-**Get My Orders (Protected)**
-```http
-GET /api/orders/my-orders
-Authorization: Bearer <your_token>
-```
-
-### 5. Payments
-
-**Process Payment (Protected)**
-```http
-POST /api/payments/process
-Authorization: Bearer <your_token>
-Content-Type: application/json
-
-{
-  "orderId": "64d0f5c8e2b8c9a1...", // Replace with your created order ID
-  "paymentMethod": "credit_card"
-}
-```
-*Note: This is a mock payment integration. It has a 90% success rate to simulate real-world behavior.*
+The Swagger interface allows you to:
+- Explore all available endpoints and their request/response schemas.
+- View required parameters and validation rules.
+- Test the API directly from your browser (includes Bearer Token authentication).
